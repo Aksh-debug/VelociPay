@@ -26,7 +26,7 @@ export const p2pTransfer=async(to:string,amount:number)=>{
         }
     }
     try{
-        await prisma.$transaction(async (tx)=>{
+        await prisma.$transaction(async (tx:any)=>{
 
             await tx.$queryRaw`SELECT * from "Balance" WHERE "userId"=${from} FOR UPDATE` //locking
             const fromBalance=await tx.balance.findFirst({
