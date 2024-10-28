@@ -13,8 +13,8 @@ const OnRampTransaction = ({ transactions }: {
 }) => {
     if (!transactions.length) {
         return (
-            <Card title="Recent Transactions">
-                <div className="">
+            <Card title="RECENT TRANSACTIONS">
+                <div className="text-zinc-400">
                     No Recent Transactions
                 </div>
             </Card>
@@ -36,11 +36,11 @@ const OnRampTransaction = ({ transactions }: {
     }
     return (
         <motion.div initial="hidden" animate="visible" variants={cardVariants}>
-            <Card title="RECENT TRANSACTIONS" additionalStyles="bg-orange-100 text-black">
-                <div className="py-1">
+            <Card title="RECENT TRANSACTIONS" additionalStyles="bg-white text-black">
+                <div className="">
                     {
                         transactions.map((t) => (
-                            <div key={Math.random() + t?.status} className={`flex items-center ${t?.status === "Processing" ? "bg-orange-200" : "bg-green-400"} my-2 hover:-translate-y-1 transition-all h-14 border-b-[1.8px] border-black transform duration-300 rounded-md justify-between p-2`}>
+                            <div key={Math.random() + t?.status} className={`flex items-center ${t?.status === "Processing" ? "bg-[#F3F3E0]" : "bg-green-400"} my-5 h-14 transform duration-300 rounded-md justify-between px-4`}>
                                 <div className="text-black">
                                     {t?.status !== "Processing" ? (
                                         <>
@@ -48,10 +48,10 @@ const OnRampTransaction = ({ transactions }: {
                                             <p className="text-xs">{t.time.toDateString()}</p>
                                         </>
                                     ) : (
-                                        <p className="font-bold text-orange-700">In Progress</p>
+                                        <p className="font-semibold">In Progress</p>
                                     )}
                                 </div>
-                                <p className={`${t?.status === "Processing" ? "text-orange-700" : "text-green-900"} font-bold`}>₹ {t?.amount / 100}</p>
+                                <p className={`${t?.status === "Processing" ? "text-black" : "text-green-900"} font-bold`}>₹ {t?.amount / 100}</p>
                             </div>
                         ))
                     }

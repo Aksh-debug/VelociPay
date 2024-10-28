@@ -1,12 +1,13 @@
 "use client"
 import { Button } from "@repo/ui/button";
 import Card from "@repo/ui/card";
-import Select from "@repo/ui/select";
 import TextInput from "@repo/ui/textInput";
 import { useState } from "react";
 import createOnRampTxn from "../app/lib/actions/createOnRampTxn";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
+import { Select,SelectContent,SelectTrigger, SelectValue,SelectItem } from "@/components/ui/select";
+
 
 const AddMoneyCard = () => {
 
@@ -39,21 +40,25 @@ const AddMoneyCard = () => {
     const [provider, setProvider] = useState(SUPPORTED_BANKS[0]?.name || '');
 
     return (
-        <motion.div initial="hidden" animate="visible" variants={cardVariants} className="">
-            <Card title="ADD MONEY" additionalStyles="bg-lime-200 text-lime-900">
+        <motion.div initial="hidden" animate="visible" variants={cardVariants} className="text-sidebar-primary-foreground">
+            <Card title="ADD MONEY" additionalStyles="h-[22rem] text-black">
                 <TextInput color="lime" placeholder="Enter Amount" label="Amount" onChange={(value) => {
                     setAmount(Number(value))
                 }} />
-                <Select label="Bank" onSelect={(value) => {
+                <Select onValueChange={(value)=>{
                     setRedirectUrl(SUPPORTED_BANKS.find(x => x.name === value)?.redirectUrl || "")
                     setProvider(SUPPORTED_BANKS.find(x => x.name === value)?.name || "")
-                }} options={SUPPORTED_BANKS.map((x) => (
-                    {
-                        key: x.name,
-                        value: x.name
-                    }
-                ))} />
-                <Button color="bg-lime-900" onClick={async () => {
+                }}>
+                    <SelectTrigger className="py-6 text-base text-neutral-400 transition-all transform duration-300 focus:outline-none border-[1.5px] border-black">
+                        <SelectValue placeholder="Bank"/>
+                    </SelectTrigger>
+                    <SelectContent>
+                        {SUPPORTED_BANKS.map((x)=>(
+                            <SelectItem className="p-2" value={x.name}>{x.name}</SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
+                <Button additionalStyles="bg-[#608BC1] border-e-2 border-b-2 hover:border-e-[5px] hover:border-b-[5px] border border-black mb-4 mt-5 font-bold" onClick={async () => {
                     try {
                         await createOnRampTxn(amount * 100, provider)
                         toast("Transaction Initiated")

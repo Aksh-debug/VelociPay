@@ -54,17 +54,17 @@ const P2PTransferCard=({p2pTransfers,sent}:{p2pTransfers:p2pTranferProps[],sent:
     }
 
     return (
-        <motion.div initial="hidden" animate="visible" variants={cardVariants} className={`relative p-2 border-[1.8px] flex flex-col justify-evenly gap-2 border-black border-b-[8px] border-e-[8px] rounded-2xl no-scrollbar overflow-y-scroll ${sent?"bg-red-200 text-red-900":"bg-green-200 text-green-900"}`}>
+        <motion.div initial="hidden" animate="visible" variants={cardVariants} className={`relative p-2 border-[1.8px] flex flex-col justify-evenly gap-2 border-black border-b-[8px] border-e-[8px] rounded-2xl no-scrollbar overflow-y-scroll ${sent?"bg-red-200 text-red-900":"bg-[#CBDCEB] text-black"}`}>
                 <p className="my-2 font-bold">{sent?"MONEY SENT":"MONEY RECEIVED"}</p>
                 {show &&
                     p2pTransfers.map((p,idx)=>(
-                        <div key={p?.id} className={`flex justify-between ${sent?"bg-red-400":"bg-green-400"} hover:-translate-y-1 transition-all transform duration-300 rounded-md items-start border-b-[1.5px] p-2`}>
-                            <div className="flex flex-col text-black justify-center">
+                        <div key={p?.id} className={`flex justify-between items-center ${sent?"bg-red-400":"bg-[#F3F3E0]"} rounded-md items-start border-b-[1.5px] p-2`}>
+                            <div className="flex flex-col text-black justify-center items-center">
                                 <p className="font-bold">{sent?"Sent":"Received"} INR</p>
                                 <p className="text-xs text-zinc-600">{p?.timeStamp.toDateString()}</p>
                             </div>
                             <div>
-                              <p className={`${sent?"bg-red-400":"bg-green-400"} font-bold`}>{sent?"-":"+"} Rs {p?.amount}</p>  
+                              <p className={`${sent?"bg-red-400":"bg-[#F3F3E0]"} font-bold`}>{sent?"-":"+"} Rs {p?.amount}</p>  
                             </div>
                         </div>
                     ))

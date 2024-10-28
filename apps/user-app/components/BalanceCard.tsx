@@ -20,16 +20,16 @@ const BalanceCard = ({ amount, locked }: { amount: number, locked: number }) => 
     }
     return (
         <motion.div className="" initial="hidden" animate="visible" variants={cardVariants}>
-            <Card title="BALANCE" additionalStyles="h-full bg-neutral-300 text-neutral-900">
-                <div className="w-full flex justify-between hover:-translate-y-1 transition-all transform duration-300 bg-gray-800 p-2 rounded-md text-white">
+            <Card title="BALANCE" additionalStyles="h-full text-neutral-900">
+                <div className="w-full flex justify-between bg-zinc-950 p-2 rounded-md text-white px-4">
                     <p className="font-bold">Unlocked Balance</p>
                     <p>{amount} INR</p>
                 </div>
-                <div className="flex w-full justify-between hover:-translate-y-1 transition-all transform duration-300 bg-gray-800 p-2 rounded-md text-white">
+                <div className="flex w-full justify-between bg-zinc-950 p-2 rounded-md text-white px-4">
                     <p className="font-bold">Total Locked Balance</p>
                     <p>{locked / 100} INR</p>
                 </div>
-                <div className="flex w-full justify-between hover:-translate-y-1 transition-all transform duration-300 bg-gray-800 p-2 rounded-md text-white">
+                <div className="flex w-full justify-between bg-zinc-950 p-2 rounded-md text-white px-4">
                     <p className="font-bold">Total Balance</p>
                     <p>{(amount + locked)} INR</p>
                 </div>

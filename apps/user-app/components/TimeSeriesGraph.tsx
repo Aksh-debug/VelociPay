@@ -78,7 +78,7 @@ const Graph = () => {
       const chartVariants={
         hidden:{
             opacity:0,
-            rotateX:45
+            rotateX:90
             // scale:0.8
         },
         visible:{
@@ -94,7 +94,7 @@ const Graph = () => {
       }
 
     return (
-        <motion.div style={{perspective:1200}} initial="hidden" animate="visible" variants={chartVariants} className="border-[1.5px] border-black shadow-black shadow-xl bg-purple-200 rounded-md my-3">
+        <motion.div  className="border p-5 bg-neutral-100 rounded-xl my-3">
             <Line height={500} width={1000} data={chartData} options={options}/>
         </motion.div>
     )

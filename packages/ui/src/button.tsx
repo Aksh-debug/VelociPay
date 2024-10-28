@@ -3,12 +3,13 @@
 interface ButtonProps {
   onClick: () => void;
   children: React.ReactNode
-  color?:string
+  color?:string,
+  additionalStyles?:string
 }
 
-export const Button = ({ onClick, children,color }: ButtonProps) => {
+export const Button = ({ onClick, children,color,additionalStyles }: ButtonProps) => {
   return (
-    <button className={`${color} w-full p-2 rounded-md text-white`} onClick={onClick} type="button">
+    <button className={`${color} w-full p-2 rounded-md text-white ${additionalStyles}`} onClick={onClick} type="button">
       {children}
     </button>
   )
