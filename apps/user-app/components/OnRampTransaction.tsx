@@ -51,7 +51,7 @@ const OnRampTransaction = ({ transactions }: {
                                         <p className="font-semibold">In Progress</p>
                                     )}
                                 </div>
-                                <p className={`${t?.status === "Processing" ? "text-black" : "text-green-900"} font-bold`}>₹ {t?.amount / 100}</p>
+                                <p className={`text-black font-bold`}>₹ {t?.amount / 100}</p>
                             </div>
                         ))
                     }

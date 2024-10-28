@@ -94,7 +94,7 @@ const Graph = () => {
       }
 
     return (
-        <motion.div  className="border p-5 bg-neutral-100 rounded-xl my-3">
+        <motion.div  className="border p-5 bg-[#FAF7F0] rounded-xl my-3">
             <Line height={500} width={1000} data={chartData} options={options}/>
         </motion.div>
     )

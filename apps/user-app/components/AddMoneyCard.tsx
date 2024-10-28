@@ -42,14 +42,14 @@ const AddMoneyCard = () => {
     return (
         <motion.div initial="hidden" animate="visible" variants={cardVariants} className="text-sidebar-primary-foreground">
             <Card title="ADD MONEY" additionalStyles="h-[22rem] text-black">
-                <TextInput color="lime" placeholder="Enter Amount" label="Amount" onChange={(value) => {
+                <TextInput color="black" placeholder="Enter Amount" label="Amount" onChange={(value) => {
                     setAmount(Number(value))
                 }} />
                 <Select onValueChange={(value)=>{
                     setRedirectUrl(SUPPORTED_BANKS.find(x => x.name === value)?.redirectUrl || "")
                     setProvider(SUPPORTED_BANKS.find(x => x.name === value)?.name || "")
                 }}>
-                    <SelectTrigger className="py-6 text-base text-neutral-400 transition-all transform duration-300 focus:outline-none border-[1.5px] border-black">
+                    <SelectTrigger className="py-6 text-base text-neutral-400 transition-all transform duration-300 focus:outline-none focus:border-black">
                         <SelectValue placeholder="Bank"/>
                     </SelectTrigger>
                     <SelectContent>

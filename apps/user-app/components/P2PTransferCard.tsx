@@ -58,8 +58,8 @@ const P2PTransferCard=({p2pTransfers,sent}:{p2pTransfers:p2pTranferProps[],sent:
                 <p className="my-2 font-bold">{sent?"MONEY SENT":"MONEY RECEIVED"}</p>
                 {show &&
                     p2pTransfers.map((p,idx)=>(
-                        <div key={p?.id} className={`flex justify-between items-center ${sent?"bg-red-400":"bg-[#F3F3E0]"} rounded-md items-start border-b-[1.5px] p-2`}>
-                            <div className="flex flex-col text-black justify-center items-center">
+                        <div key={p?.id} className={`flex justify-between items-center ${sent?"bg-red-400":"bg-[#F3F3E0]"} rounded-md items-start border-b-[1.5px] py-2 px-4`}>
+                            <div className="flex flex-col text-black justify-center">
                                 <p className="font-bold">{sent?"Sent":"Received"} INR</p>
                                 <p className="text-xs text-zinc-600">{p?.timeStamp.toDateString()}</p>
                             </div>

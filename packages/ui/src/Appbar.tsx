@@ -12,7 +12,7 @@ interface AppbarProps {
 export const Appbar = ({ user, onSignin, onSignout }: AppbarProps) => {
     return (
         <div className="flex justify-between px-5 border-b items-center py-3 sticky top-0 z-30 bg-white">
-            <span className="font-semibold text-lg">VelociPay</span>
+            <span className="font-bold text-base cursor-pointer">VELOCIPAY</span>
             <div className="">
                 <Button onClick={user ? onSignout : onSignin}>{<LogoutIcon />}</Button>
             </div>
