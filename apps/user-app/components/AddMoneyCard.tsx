@@ -63,7 +63,6 @@ const AddMoneyCard = ({ transactions }: {
     const [amount, setAmount] = useState(0);
     const [provider, setProvider] = useState(SUPPORTED_BANKS[0]?.name || '');
 
-    if(!socket) return;
 
     return (
         <motion.div initial="hidden" animate="visible" variants={cardVariants} className="text-sidebar-primary-foreground">
@@ -90,7 +89,9 @@ const AddMoneyCard = ({ transactions }: {
                         if(onRampTransact){
                             transactions.push(onRampTransact)
                         }
-                        socket.send(JSON.stringify(transactions))
+                        if(socket){
+                            socket.send(JSON.stringify(transactions))
+                        }
                         toast("Transaction Initiated")
                         // window.location.href="/transfer"
                         // window.location.href = redirectUrl || "";
