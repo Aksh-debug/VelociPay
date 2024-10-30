@@ -2,14 +2,38 @@
 import { Button } from "@repo/ui/button";
 import Card from "@repo/ui/card";
 import TextInput from "@repo/ui/textInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import createOnRampTxn from "../app/lib/actions/createOnRampTxn";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { Select,SelectContent,SelectTrigger, SelectValue,SelectItem } from "@/components/ui/select";
 
 
-const AddMoneyCard = () => {
+const AddMoneyCard = ({ transactions }: {
+    transactions: {
+        startTime: Date,
+        amount: number,
+        status: string,
+        provider: string
+    }[]
+}) => {
+
+    const [socket,setSocket]=useState<null | WebSocket>(null)
+    const [latestMessage,setMessage]=useState("");
+
+    useEffect(()=>{
+        const newSocket=new WebSocket("ws://localhost:8000")
+        newSocket.onopen=()=>{
+            console.log('Connected')
+            setSocket(newSocket)
+        }
+        newSocket.onmessage=(message)=>{
+            setMessage(message.data)
+        }
+        return ()=>{
+            socket?.close()
+        }
+    },[])
 
 
     const SUPPORTED_BANKS = [{
@@ -39,6 +63,8 @@ const AddMoneyCard = () => {
     const [amount, setAmount] = useState(0);
     const [provider, setProvider] = useState(SUPPORTED_BANKS[0]?.name || '');
 
+    if(!socket) return;
+
     return (
         <motion.div initial="hidden" animate="visible" variants={cardVariants} className="text-sidebar-primary-foreground">
             <Card title="ADD MONEY" additionalStyles="h-[22rem] text-black">
@@ -60,9 +86,13 @@ const AddMoneyCard = () => {
                 </Select>
                 <Button additionalStyles="bg-[#608BC1] border-e-2 border-b-2 hover:border-e-[5px] hover:border-b-[5px] border border-black mb-4 mt-5 font-bold" onClick={async () => {
                     try {
-                        await createOnRampTxn(amount * 100, provider)
+                        const {onRampTransact}=await createOnRampTxn(amount * 100, provider)
+                        if(onRampTransact){
+                            transactions.push(onRampTransact)
+                        }
+                        socket.send(JSON.stringify(transactions))
                         toast("Transaction Initiated")
-                        window.location.href="/transfer"
+                        // window.location.href="/transfer"
                         // window.location.href = redirectUrl || "";
                     }
                     catch(e){

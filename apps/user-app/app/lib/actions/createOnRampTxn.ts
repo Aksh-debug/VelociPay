@@ -14,7 +14,7 @@ const createOnRampTxn=async(amount:number,provider:string)=>{
             message:"User not logged In"
         }
     }
-    await prisma.onRampTransaction.create({
+    const onRampTransact=await prisma.onRampTransaction.create({
         data:{
             userId:userId,
             amount:amount,
@@ -24,9 +24,7 @@ const createOnRampTxn=async(amount:number,provider:string)=>{
             token:token
         }
     })
-    return {
-        message:"On ramp transaction added!!"
-    }
+    return {onRampTransact};
 }   
 
 export default createOnRampTxn;

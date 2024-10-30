@@ -31,7 +31,7 @@ const getOnRampTransactions = async () => {
         }
     })
     return transactions.map((t:any) => ({
-        time: t.startTime,
+        startTime: t.startTime,
         amount: t.amount,
         status: t.status,
         provider: t.provider
@@ -46,7 +46,7 @@ const Transfer = async () => {
         <div className="flex flex-col px-10 py-5 mb-5 gap-10 bg-white rounded-xl">
         <h1 className="text-4xl font-bold text-gray-800">Transfer</h1>
             <div className="grid grid-cols-2 gap-10">
-                <AddMoneyCard />
+                <AddMoneyCard transactions={transactions} />
                 <BalanceCard amount={balance.amount} locked={balance.locked} />
             </div>
             <div>
