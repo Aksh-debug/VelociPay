@@ -16,7 +16,7 @@ const OnRampTransaction = ({ transactions }: {
     const [updatedTransactions,setUpdatedTransactions]=useState(transactions);
 
     useEffect(()=>{
-        const newSocket=new WebSocket("ws://localhost:8000");
+        const newSocket=new WebSocket("ws://velocipay-websocket.vercel.app:8000");
         newSocket.onmessage=(message)=>{
             if(message.data!=="Hello from Velocipay!!"){
                 const messageData=JSON.parse(message.data);

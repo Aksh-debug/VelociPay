@@ -22,7 +22,7 @@ const AddMoneyCard = ({ transactions }: {
     const [latestMessage,setMessage]=useState("");
 
     useEffect(()=>{
-        const newSocket=new WebSocket("ws://localhost:8000")
+        const newSocket=new WebSocket("ws://velocipay-websocket.vercel.app:8000")
         newSocket.onopen=()=>{
             console.log('Connected')
             setSocket(newSocket)
@@ -93,7 +93,7 @@ const AddMoneyCard = ({ transactions }: {
                             socket.send(JSON.stringify(transactions))
                         }
                         toast("Transaction Initiated")
-                        // window.location.href="/transfer"
+                        window.location.href="/transfer"
                         // window.location.href = redirectUrl || "";
                     }
                     catch(e){
