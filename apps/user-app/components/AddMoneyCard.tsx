@@ -21,19 +21,19 @@ const AddMoneyCard = ({ transactions }: {
     const [socket,setSocket]=useState<null | WebSocket>(null)
     const [latestMessage,setMessage]=useState("");
 
-    useEffect(()=>{
-        const newSocket=new WebSocket("ws://velocipay-websocket.vercel.app:8000")
-        newSocket.onopen=()=>{
-            console.log('Connected')
-            setSocket(newSocket)
-        }
-        newSocket.onmessage=(message)=>{
-            setMessage(message.data)
-        }
-        return ()=>{
-            socket?.close()
-        }
-    },[])
+    // useEffect(()=>{
+    //     const newSocket=new WebSocket("ws://velocipay-websocket.vercel.app:8000")
+    //     newSocket.onopen=()=>{
+    //         console.log('Connected')
+    //         setSocket(newSocket)
+    //     }
+    //     newSocket.onmessage=(message)=>{
+    //         setMessage(message.data)
+    //     }
+    //     return ()=>{
+    //         socket?.close()
+    //     }
+    // },[])
 
 
     const SUPPORTED_BANKS = [{

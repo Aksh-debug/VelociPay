@@ -15,21 +15,21 @@ const OnRampTransaction = ({ transactions }: {
 
     const [updatedTransactions,setUpdatedTransactions]=useState(transactions);
 
-    useEffect(()=>{
-        const newSocket=new WebSocket("ws://velocipay-websocket.vercel.app:8000");
-        newSocket.onmessage=(message)=>{
-            if(message.data!=="Hello from Velocipay!!"){
-                const messageData=JSON.parse(message.data);
-                if(Array.isArray(messageData)){
-                    setUpdatedTransactions(messageData)
-                }
-            }
+    // useEffect(()=>{
+    //     const newSocket=new WebSocket("ws://velocipay-websocket.vercel.app:8000");
+    //     newSocket.onmessage=(message)=>{
+    //         if(message.data!=="Hello from Velocipay!!"){
+    //             const messageData=JSON.parse(message.data);
+    //             if(Array.isArray(messageData)){
+    //                 setUpdatedTransactions(messageData)
+    //             }
+    //         }
             
-        }
-        return ()=>{
-            newSocket.close();
-        }
-    },[])
+    //     }
+    //     return ()=>{
+    //         newSocket.close();
+    //     }
+    // },[])
 
     console.log('transactions',updatedTransactions)
     if (!updatedTransactions.length) {
